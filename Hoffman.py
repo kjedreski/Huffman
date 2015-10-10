@@ -2,6 +2,7 @@
 #Purpose: Huffman encoding and decoding
 from sys import argv
 from BinaryTree import BinaryTree,Node
+from Queue import Queue
 script,filename = argv
 
 
@@ -50,7 +51,20 @@ uniqueArray = findUnique(fileInfo)
 forest = createForest(fileInfo,uniqueArray)
 printForest(forest)
 
-			
+
+#sort the forest by ascending N.weight
+print "sort function-------------------->"
+forest = sorted(forest, key = lambda Node: Node.weight)
+printForest(forest)
+
+
+print "queue function-------------->"		
+#now add forest to queue
+q = Queue()
+for N in forest:
+	q.put(N)
+
+	
 	
 
 
