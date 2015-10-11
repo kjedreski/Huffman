@@ -31,7 +31,7 @@ def findUnique(fileInfo):
 def createForest(fileInfo,uniqueArray):
 	forest = list()
 	for x in uniqueArray:
-		leaf = Node(0,x)
+		leaf = BinaryTree(0,x)
 		for y in fileInfo:
 			if x == y:
 				leaf.addWeight(1)
@@ -40,7 +40,7 @@ def createForest(fileInfo,uniqueArray):
 
 def printForest(forest):
 	for N in forest:
-		print "Char is {}, frequency is {}".format(N.char,N.weight)
+		print "{}({})".format(N.char,N.weight)
 	
 
 
@@ -54,7 +54,7 @@ printForest(forest)
 
 #sort the forest by ascending N.weight
 print "sort function-------------------->"
-forest = sorted(forest, key = lambda Node: Node.weight)
+forest = sorted(forest, key = lambda BinaryTree: BinaryTree.weight)
 printForest(forest)
 
 
@@ -63,6 +63,11 @@ print "queue function-------------->"
 q = Queue()
 for N in forest:
 	q.put(N)
+	
+#start creating binaryTrees
+#while q.qsize() > 0:
+	
+	
 
 	
 	

@@ -8,6 +8,7 @@
 #
 class Node:
 	def __init__(self,weight,char):
+		#character are represented as '@' symbols
 		self.left = None
 		self.right = None
 		self.char = char
