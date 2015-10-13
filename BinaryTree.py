@@ -29,21 +29,21 @@ class BinaryTree(Node):
 	def addNode(self,data):
 		return Node(data)
 		
-	def insert(self, root, data):
+	def insert(self, root, weight):
 		if (root == None):
-			root = self.addNode(data)
+			root = self.addNode(weight)
 		else:
-			if (data <= root.data):
-				root.left = self.insert(root.left,data)
+			if (weight <= root.weight):
+				root.left = self.insert(root.left,weight)
 			else:
-				root.right = self.insert(root.right,data)
+				root.right = self.insert(root.right,weight)
 		return root
 	
-	def PreOrder(self,root):
+	def PostOrder(self,root):
 		if root == None:
 			pass
 		else:
-			print(root.data)
-			self.PreOrder(root.left)
-			self.PreOrder(root.right)
+			self.PostOrder(root.left)
+			self.PostOrder(root.right)
+			print(root.weight)
 			

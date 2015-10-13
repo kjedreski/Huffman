@@ -60,13 +60,30 @@ printForest(forest)
 
 print "queue function-------------->"		
 #now add forest to queue
-q = Queue()
+q1 = Queue()
+q2 = Queue()
 for N in forest:
-	q.put(N)
+	q1.put(N)
 	
 #start creating binaryTrees
-#while q.qsize() > 0:
+#dequeue first 2,
+while q1.qsize() > 1:
+	tempNode1 = q1.get()
+	tempNode2 = q1.get()
+	totalWeight = tempNode1.weight+tempNode2.weight
+	innerNode = BinaryTree(totalWeight,'@')
+	if tempNode1.weight >= tempNode2.weight:
+		innerNode.right = tempNode1
+		innerNode.left = tempNode2
+	else:
+		innerNode.right = tempNode2
+		innerNode.left = tempNode1
+	q1.put(innerNode)
 	
+tree = q1.get()
+
+
+tree.PostOrder(tree)
 	
 
 	
