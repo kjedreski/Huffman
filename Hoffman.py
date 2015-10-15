@@ -3,9 +3,8 @@
 from sys import argv
 from BinaryTree import BinaryTree,Node
 from Queue import Queue
+
 script,filename = argv
-
-
 #First implement reading files 
 
 def Read():
@@ -41,30 +40,29 @@ def createForest(fileInfo,uniqueArray):
 def printForest(forest):
 	for N in forest:
 		print "{}({})".format(N.char,N.weight)
+		
+def sortForest(forest):
+	return sorted(forest, key = lambda BinaryTree: BinaryTree.weight)
 	
-
-
+def buildQueue(forest):
+	q1 = Queue()
+	for N in forest:
+		q1.put(N)
+	return q1
+	
 #fileInfo has entire file read on string
 #uniqueArray has unique chars stored from string
 fileInfo = Read()
 uniqueArray = findUnique(fileInfo)
 forest = createForest(fileInfo,uniqueArray)
 printForest(forest)
-
-
 #sort the forest by ascending N.weight
 print "sort function-------------------->"
-forest = sorted(forest, key = lambda BinaryTree: BinaryTree.weight)
+forest = sortForest(forest)
 printForest(forest)
-
-
 print "queue function-------------->"		
 #now add forest to queue
-q1 = Queue()
-q2 = Queue()
-for N in forest:
-	q1.put(N)
-	
+q1 = buildQueue(forest)
 #start creating binaryTrees
 #dequeue first 2,
 while q1.qsize() > 1:
@@ -80,18 +78,14 @@ while q1.qsize() > 1:
 		innerNode.left = tempNode1
 	q1.put(innerNode)
 	
+
+#Grab tree from queue, should be only only in queue
 tree = q1.get()
-
-
+#call post traversal and append to array for string
 tree.PostOrder(tree)
-	
 
-	
-	
-
-
-
-
-
-
-		
+#concatenate to string
+encode = ""
+for x in tree.a:
+	encode += x
+print "Post Order traversal: {}".format(encode)		

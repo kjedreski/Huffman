@@ -13,18 +13,17 @@ class Node:
 		self.right = None
 		self.char = char
 		self.weight= weight
+		self.a = []
 	
 #increment weight, raise frequency
 	def addWeight(self,weight):
 		self.weight+=weight
 		
-		
-		
-		
 #BinaryTree inherits from Node
 class BinaryTree(Node):
-	def _init_(self):
+	def _init_(self): 
 		self.root = None
+		
 		
 	def addNode(self,data):
 		return Node(data)
@@ -45,5 +44,6 @@ class BinaryTree(Node):
 		else:
 			self.PostOrder(root.left)
 			self.PostOrder(root.right)
-			print(root.weight)
+			self.a.append(root.char)
+		
 			
