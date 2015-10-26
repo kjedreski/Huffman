@@ -17,6 +17,11 @@ class Node:
 	def addWeight(self,weight):
 		self.weight+=weight
 		
+		
+		
+
+
+
 #BinaryTree inherits from Node
 class BinaryTree(Node):
 	def _init_(self): 
@@ -35,20 +40,28 @@ class BinaryTree(Node):
 				root.right = self.insert(root.right,weight)
 		return root
 	
+	def encode(self,root,key,e,code):
+		if root:
+			code+=e
+			if root.char == key:
+				print code
+			self.encode(root.left,key,'0',code)
+			self.encode(root.right,key,'1',code)
+		
+	
+	
 	def PostOrder(self,root):
-		if root == None:
-			pass
+		#retrive string message of huffman tree
 		#if root.left == None and root.right == None:
 		#	print 'leaf'
 			#is internal node
-			
-		else:
-			if (root.char == '@'):
-				print root.weight
-			#self.code +=root.code
+		if root:
 			self.PostOrder(root.left)
 			self.PostOrder(root.right)
-			#self.a.append(root.char)
+			self.a.append(root.char)
+			
+			
+			
 			
 		
 			

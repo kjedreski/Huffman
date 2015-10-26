@@ -59,7 +59,8 @@ forest = createForest(fileInfo,uniqueArray)
 #print "sort function-------------------->"
 forest = sortForest(forest)
 #printForest(forest)
-#print "queue function-------------->"		
+print "queue function-------------->"		
+printForest(forest)
 #now add forest to queue
 q1 = buildQueue(forest)
 
@@ -96,8 +97,6 @@ while (len(forest)>1):
 	forest.append(innerNode)
 	forest = forest[2:]
 	forest = sortForest(forest)
-	printForest(forest)
-	print '_____________________'
 
 
 #start creating binaryTrees
@@ -120,13 +119,18 @@ while (len(forest)>1):
 #Grab tree from queue, should be only only in queue
 
 tree = forest[0]
-#call post traversal and append to array for string
-tree.PostOrder(tree)
 
+#traverse unique array for assoc huffman values
+for char in uniqueArray:
+	code=""
+	e=''
+	tree.encode(tree,char,e,code)
+	#print "Character: {}, Encoding: {}".format(c,code)
+	
 
 #concatenate to string
-#string = ""
-#for x in tree.a:
-	#string += x
-#print "Post Order traversal: {}".format(string)		
-#print tree.code
+tree.PostOrder(tree)
+string = ""
+for x in tree.a:
+	string += x
+print "Post Order traversal: {}".format(string)		
