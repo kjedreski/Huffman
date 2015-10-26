@@ -6,7 +6,6 @@ from Queue import Queue
 
 script,filename = argv
 #First implement reading files 
-
 def Read():
 	fileInfo = ""
 	with open(filename) as file:
@@ -36,7 +35,7 @@ def createForest(fileInfo,uniqueArray):
 				leaf.addWeight(1)
 		forest.append(leaf)
 	return forest
-
+	
 def printForest(forest):
 	for N in forest:
 		print "{}({})".format(N.char,N.weight)
@@ -55,37 +54,79 @@ def buildQueue(forest):
 fileInfo = Read()
 uniqueArray = findUnique(fileInfo)
 forest = createForest(fileInfo,uniqueArray)
-printForest(forest)
+#printForest(forest)
 #sort the forest by ascending N.weight
-print "sort function-------------------->"
+#print "sort function-------------------->"
 forest = sortForest(forest)
-printForest(forest)
-print "queue function-------------->"		
+#printForest(forest)
+#print "queue function-------------->"		
 #now add forest to queue
 q1 = buildQueue(forest)
-#start creating binaryTrees
-#dequeue first 2,
-while q1.qsize() > 1:
-	tempNode1 = q1.get()
-	tempNode2 = q1.get()
-	totalWeight = tempNode1.weight+tempNode2.weight
-	innerNode = BinaryTree(totalWeight,'@')
-	if tempNode1.weight >= tempNode2.weight:
+
+
+#**********************
+#Note: if building a master tree with a queue does not work
+#the world will not end.  Just put all the nodes and subtree into an array
+#sort by lowest weight
+#Then, while len(A[])>q1
+# A[0] + A[1]
+# add new tree to Array
+#sort and repeat
+# asymptotically, nlog(n) for sorting and
+# nlog(n) + n + 
+
+
+
+while (len(forest)>1):
+	# already sorted
+	tempNode1 = forest[0]
+	tempNode2 = forest[1]
+	totalWeight = tempNode1.weight + tempNode2.weight
+	innerNode = BinaryTree(totalWeight,'@') # inner node
+	if (tempNode1.weight >= tempNode2.weight):
+		tempNode1.code = "1"
 		innerNode.right = tempNode1
+		tempNode2.code =  "0"
 		innerNode.left = tempNode2
 	else:
+		tempNode2.code = "1"
 		innerNode.right = tempNode2
+		tempNode1.code = "0"
 		innerNode.left = tempNode1
-	q1.put(innerNode)
-	
+	forest.append(innerNode)
+	forest = forest[2:]
+	forest = sortForest(forest)
+	printForest(forest)
+	print '_____________________'
 
+
+#start creating binaryTrees
+#dequeue first 2,
+#while q1.qsize() > 1:
+#	tempNode1 = q1.get()
+#	tempNode2 = q1.get()
+#	totalWeight = tempNode1.weight+tempNode2.weight
+#	innerNode = BinaryTree(totalWeight,'@')
+##		innerNode.right = tempNode1
+#		innerNode.left = tempNode2
+#	else:
+#		innerNode.right = tempNode2
+#		innerNode.left = tempNode1
+	# Re-organize q1,
+#	q1.put(innerNode)
+	
+	
+	
 #Grab tree from queue, should be only only in queue
-tree = q1.get()
+
+tree = forest[0]
 #call post traversal and append to array for string
 tree.PostOrder(tree)
 
+
 #concatenate to string
-encode = ""
-for x in tree.a:
-	encode += x
-print "Post Order traversal: {}".format(encode)		
+#string = ""
+#for x in tree.a:
+	#string += x
+#print "Post Order traversal: {}".format(string)		
+#print tree.code

@@ -1,9 +1,6 @@
 #Developer: Kevin Jedreski
 #purpose: binary tree
 #
-#
-#
-
 #increment weight for each char in a file
 #
 class Node:
@@ -14,6 +11,7 @@ class Node:
 		self.char = char
 		self.weight= weight
 		self.a = []
+		self.code = ""
 	
 #increment weight, raise frequency
 	def addWeight(self,weight):
@@ -23,7 +21,6 @@ class Node:
 class BinaryTree(Node):
 	def _init_(self): 
 		self.root = None
-		
 		
 	def addNode(self,data):
 		return Node(data)
@@ -41,9 +38,17 @@ class BinaryTree(Node):
 	def PostOrder(self,root):
 		if root == None:
 			pass
+		#if root.left == None and root.right == None:
+		#	print 'leaf'
+			#is internal node
+			
 		else:
+			if (root.char == '@'):
+				print root.weight
+			#self.code +=root.code
 			self.PostOrder(root.left)
 			self.PostOrder(root.right)
-			self.a.append(root.char)
+			#self.a.append(root.char)
+			
 		
 			
