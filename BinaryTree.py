@@ -1,8 +1,11 @@
 #Developer: Kevin Jedreski
-#purpose: binary tree
+#purpose: binary tree developed for Huffman encoding
 #
-#increment weight for each char in a file
 #
+#
+#Binary tree inherits node
+# a resembles the string of each Node,
+#I concatenate sthe char of each recur string in post traversal
 class Node:
 	def __init__(self,weight,char):
 		#character are represented as '@' symbols
@@ -16,11 +19,6 @@ class Node:
 #increment weight, raise frequency
 	def addWeight(self,weight):
 		self.weight+=weight
-		
-		
-		
-
-
 
 #BinaryTree inherits from Node
 class BinaryTree(Node):
@@ -40,28 +38,8 @@ class BinaryTree(Node):
 				root.right = self.insert(root.right,weight)
 		return root
 	
-	def encode(self,root,key,e,code):
-		if root:
-			code+=e
-			if root.char == key:
-				print code
-			self.encode(root.left,key,'0',code)
-			self.encode(root.right,key,'1',code)
-		
-	
-	
 	def PostOrder(self,root):
-		#retrive string message of huffman tree
-		#if root.left == None and root.right == None:
-		#	print 'leaf'
-			#is internal node
 		if root:
 			self.PostOrder(root.left)
 			self.PostOrder(root.right)
-			self.a.append(root.char)
-			
-			
-			
-			
-		
-			
+			self.a.append(root.char)		

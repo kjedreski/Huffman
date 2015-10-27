@@ -1,10 +1,21 @@
-we need binary tree, we need file i/o, we need to reduce the amount of bits
-from input file and produce the compressed version into output file
-output binary tree post-order
-save encoded file
+Python 2.7
+To run: on command line >> python .\Hoffman.py .\file.txt
 
 
 
-  Read the file to be encoded and construct the Huffman coding tree;
-(2)    Display the Huffman codes to standard output. 
-The output should follow the format:
+Please note: on lines 108 - 110:  There was no easy way from
+Python's standard library to successfully convert from a string
+of '101001' to bytes with having a multiple of 8.  I had to borrow a snippet of code from
+#http://thehelpcentre.xyz/question/6770925/huffman-encoding-how-to-write-binary-data-in-python
+
+
+
+
+
+
+
+
+
+
+
+
